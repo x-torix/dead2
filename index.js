@@ -15,8 +15,12 @@ async function main() {
 
 }
 async function listDB(client){
-    let databaseList = client.db().admin().listDatabases();
+    let databaseList = await client.db().admin().listDatabases();
 
     console.log(databaseList);
+
+    databaseList.forEach(database => {
+        console.log("Nazwa: " + database.name + " ,Rozmmiar: " + database.sizeOnDisk);
+    });
 }
 main();
