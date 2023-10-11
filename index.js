@@ -6,6 +6,7 @@ const client = new MongoClient(mongoString);
 async function main() {
     try{
         await client.connect();
+        await listDB(client);
     } catch (error) {
         console.error(error);
     } finally{
@@ -13,5 +14,9 @@ async function main() {
     }
 
 }
+async function listDB(client){
+    let databaseList = client.db().admin().listDatabases();
 
+    console.log(databaseList);
+}
 main();
